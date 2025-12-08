@@ -27,10 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileOverlay = document.querySelector('.mobile-nav-overlay');
 
     if (toggleBtn && mobileOverlay) {
-        toggleBtn.addEventListener('click', () => {
+        // Toggle Menu
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent immediate closing
             toggleBtn.classList.toggle('active');
             mobileOverlay.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
+        });
+
+        // Close on clicking backdrop
+        mobileOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileOverlay) {
+                toggleBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+
+        // Close on link click
+        const navLinks = mobileOverlay.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
         });
     }
 
