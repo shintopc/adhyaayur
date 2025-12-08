@@ -12,7 +12,10 @@ export default defineConfig({
                 facilities: resolve(__dirname, 'facilities.html'),
                 gallery: resolve(__dirname, 'gallery.html'),
                 contact: resolve(__dirname, 'contact.html'),
-                // Add other pages here as created
+                booking: resolve(__dirname, 'booking.html'),
+                packages: resolve(__dirname, 'packages.html'),
+                blog: resolve(__dirname, 'blog.html'),
+                testimonials: resolve(__dirname, 'testimonials.html'),
             },
         },
     },
