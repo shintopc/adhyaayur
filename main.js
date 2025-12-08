@@ -15,11 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     footerDiv.innerHTML = footer;
     document.body.appendChild(footerDiv.firstElementChild);
 
-    // Insert WhatsApp Widget
-    const waDiv = document.createElement('div');
+    // Insert WhatsApp Widget & PWA Button
     import('./src/components/layout.js').then(module => {
-        waDiv.innerHTML = module.whatsappWidget || '';
-        if (waDiv.innerHTML) document.body.appendChild(waDiv.firstElementChild);
+        const div = document.createElement('div');
+        div.innerHTML = module.whatsappWidget || '';
+        // Append all elements from the template
+        while (div.firstChild) {
+            document.body.appendChild(div.firstChild);
+        }
     });
 
     // Mobile Menu Toggle Logic
