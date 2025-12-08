@@ -173,10 +173,22 @@ img {
     align-items: center;
 }
 
-.logo a {
+.logo-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    line-height: 1;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text {
     display: flex;
     flex-direction: column;
-    line-height: 1;
 }
 
 .logo h1 {

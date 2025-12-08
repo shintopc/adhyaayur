@@ -2,9 +2,12 @@ export const header = `
 <header class="main-header">
   <div class="container header-content">
     <div class="logo">
-      <a href="/">
-        <h1>Adhya Ayurveda</h1>
-        <span class="tagline">Essence of Nature</span>
+      <a href="/" class="logo-link">
+        <img src="/logo.png" alt="Adhya Ayurveda Logo" class="logo-img">
+        <div class="logo-text">
+          <h1>Adhya Ayurveda</h1>
+          <span class="tagline">Essence of Nature</span>
+        </div>
       </a>
     </div>
     <nav class="desktop-nav">
