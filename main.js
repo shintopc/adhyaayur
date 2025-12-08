@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = document.getElementById('message').value;
 
             // Construct WhatsApp Message
-            const waNumber = "919876543210"; // Hospital Number
+            const waNumber = "919633237765"; // Hospital Number
             const text = `*New Appointment Request*%0A%0A*Name:* ${firstName} ${lastName}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A*Treatment:* ${treatment}%0A*Date:* ${date}%0A*Message:* ${message}`;
 
             // Open WhatsApp

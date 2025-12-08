@@ -59,8 +59,8 @@ export const footer = `
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <p>📍 Green Valley, Kerala, India</p>
-      <p>📞 +91 98765 43210</p>
+      <p>📍 Virajpet, Karnataka, India</p>
+      <p>📞 +91 96332 37765</p>
       <p>✉️ info@adhyaayurveda.com</p>
     </div>
   </div>
@@ -71,7 +71,7 @@ export const footer = `
 `;
 
 export const whatsappWidget = `
-<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" title="Chat with us">
+<a href="https://wa.me/919633237765" class="whatsapp-float" target="_blank" title="Chat with us">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30" height="30">
 </a>
 `;
