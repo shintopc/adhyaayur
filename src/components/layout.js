@@ -74,7 +74,7 @@ export const footer = `
 `;
 
 export const whatsappWidget = `
-<button id="pwa-install-btn" class="pwa-float" style="display: none;" title="Install App">
+<button id="pwa-install-btn" class="pwa-float" title="Install App">
   <img src="/logo.png" alt="Install" class="pwa-icon">
   <span class="pwa-text">Install</span>
 </button>

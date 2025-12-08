@@ -111,37 +111,53 @@ if ('serviceWorker' in navigator) {
 
 // PWA Install Prompt Logic
 let deferredPrompt;
-const installBtn = document.getElementById('pwa-install-btn');
+// Note: installBtn might reference the element before it's injected if not careful.
+// Since injection is async (import().then), we need to use event delegation or wait.
+// BUT, window.addEventListener('beforeinstallprompt') happens whenever.
+// Let's use delegation for the click.
 
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent the mini-infobar from appearing on mobile
     e.preventDefault();
-    // Stash the event so it can be triggered later.
     deferredPrompt = e;
-    // Update UI notify the user they can install the PWA
-    if (installBtn) {
-        installBtn.style.display = 'flex';
+    console.log('beforeinstallprompt fired');
+});
 
-        installBtn.addEventListener('click', () => {
-            // Hide the app provided install promotion
-            installBtn.style.display = 'none';
-            // Show the install prompt
+// Since the button is injected dynamically, we should attach listener to body or wait.
+// But earlier code attached it to `installBtn` which was selected at top level...
+// Wait, `const installBtn = document.getElementById('pwa-install-btn');` checks DOM immediately.
+// But the button is injected ASYNC via `import(..).then(...)`.
+// So `installBtn` is likely NULL when this runs.
+// That explains why it might fail to work despite being visible.
+
+document.addEventListener('click', (e) => {
+    if (e.target.closest('#pwa-install-btn')) {
+        const btn = e.target.closest('#pwa-install-btn');
+        if (deferredPrompt) {
             deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
+                    btn.style.display = 'none';
                 }
                 deferredPrompt = null;
             });
-        });
+        } else {
+            alert("To install web app, tap 'Share' then 'Add to Home Screen' (iOS) or use your browser's Install option.");
+        }
     }
 });
 
-// Optionally hide button if already installed
+// Hide if already installed (need to check periodically or after injection)
+// Simple check:
+setInterval(() => {
+    const btn = document.getElementById('pwa-install-btn');
+    if (btn && window.matchMedia('(display-mode: standalone)').matches) {
+        btn.style.display = 'none';
+    }
+}, 1000);
+
 window.addEventListener('appinstalled', () => {
-    if (installBtn) installBtn.style.display = 'none';
+    const btn = document.getElementById('pwa-install-btn');
+    if (btn) btn.style.display = 'none';
     console.log('PWA was installed');
 });
