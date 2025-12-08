@@ -3,7 +3,7 @@ export const header = `
   <div class="container header-content">
     <div class="logo">
       <a href="/">
-        <h1>Adhyaayur</h1>
+        <h1>Adhya Ayurveda</h1>
         <span class="tagline">Essence of Nature</span>
       </a>
     </div>
@@ -45,7 +45,7 @@ export const footer = `
 <footer class="main-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <h3>Adhyaayur</h3>
+      <h3>Adhya Ayurveda</h3>
       <p>Authentic Ayurveda Hospital dedicated to healing through nature's wisdom. Restoring balance, rejuvenating life.</p>
     </div>
     <div class="footer-col">
@@ -61,11 +61,11 @@ export const footer = `
       <h4>Contact</h4>
       <p>📍 Green Valley, Kerala, India</p>
       <p>📞 +91 98765 43210</p>
-      <p>✉️ info@adhyaayur.com</p>
+      <p>✉️ info@adhyaayurveda.com</p>
     </div>
   </div>
   <div class="footer-bottom text-center">
-    <p>&copy; ${new Date().getFullYear()} Adhyaayur Ayurveda Hospital. All rights reserved.</p>
+    <p>&copy; ${new Date().getFullYear()} Adhya Ayurveda Hospital. All rights reserved.</p>
   </div>
 </footer >
 `;
