@@ -49,12 +49,20 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--soft-beige);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 h1,
@@ -236,6 +244,7 @@ img {
     display: flex;
     justify-content: flex-end;
     /* Align drawer to the right */
+    overflow: hidden;
 }
 
 .mobile-nav-overlay.active {
@@ -255,10 +264,29 @@ img {
     transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     overflow-y: auto;
+    display: none;
+    /* Hide implicitly to prevent scrollbar */
+}
+
+/* We need to ensure it's displayed when transitioning, but display:none prevents transition.
+   Actually, with display:none it won't animate open effectively.
+   Instead, rely on overflow-x: hidden on body/html which we added.
+   
+   However, if that failed, let's try right: 0 and transform.
+   
+   Let's stick to the Plan A of display: none but handle the animation.
+   Actually, a common fix is to ensure the PARENT clips it.
+   I'll add overflow:hidden to the .mobile-nav-overlay. */
+
+.mobile-nav-overlay {
+    /* ... existing styles ... */
+    overflow: hidden;
+    /* CLIP THE DRAWER */
 }
 
 .mobile-nav-overlay.active .mobile-nav {
     transform: translateX(0);
+    display: block;
 }
 
 .mobile-nav ul {
