@@ -210,91 +210,189 @@ img {
     color: var(--primary-green);
 }
 
-/* Mobile Menu */
+/* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 2100;
+    /* Higher than overlay to remain clickable */
+    width: 30px;
+    height: 30px;
+    padding: 0;
 }
 
 .mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
+    width: 100%;
+    height: 2px;
     background-color: var(--dark-green);
-    transition: 0.3s;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Mobile Nav Overlay (Backdrop) */
+/* Hamburger Animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Nav Overlay (Full Screen Glassmorphism) */
 .mobile-nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent black backdrop */
+    background: rgba(44, 62, 80, 0.4);
+    /* Darkened dim for contrast */
     z-index: 2000;
-    /* Higher than header */
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    display: flex;
-    justify-content: flex-end;
-    /* Align drawer to the right */
-    overflow: hidden;
+    pointer-events: none;
+    /* Let clicks pass through when hidden */
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .mobile-nav-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 /* Mobile Nav Drawer */
 .mobile-nav {
-    width: 75%;
-    max-width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 350px;
     height: 100%;
-    background: var(--white);
-    padding: 80px 20px 40px;
-    /* Top padding for close space */
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.7);
+    /* Frosted glass effect */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 100px 40px 40px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    overflow-y: auto;
-    display: none;
-    /* Hide implicitly to prevent scrollbar */
-}
-
-/* We need to ensure it's displayed when transitioning, but display:none prevents transition.
-   Actually, with display:none it won't animate open effectively.
-   Instead, rely on overflow-x: hidden on body/html which we added.
-   
-   However, if that failed, let's try right: 0 and transform.
-   
-   Let's stick to the Plan A of display: none but handle the animation.
-   Actually, a common fix is to ensure the PARENT clips it.
-   I'll add overflow:hidden to the .mobile-nav-overlay. */
-
-.mobile-nav-overlay {
-    /* ... existing styles ... */
-    overflow: hidden;
-    /* CLIP THE DRAWER */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .mobile-nav-overlay.active .mobile-nav {
     transform: translateX(0);
-    display: block;
 }
 
+/* Menu Items */
 .mobile-nav ul {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: 24px;
     text-align: center;
-    font-size: 1.5rem;
+    width: 100%;
+    padding: 0;
+}
+
+.mobile-nav li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Staggered Animation Delay for Items */
+.mobile-nav-overlay.active .mobile-nav li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(5) {
+    transition-delay: 0.3s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(6) {
+    transition-delay: 0.35s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(7) {
+    transition-delay: 0.4s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(8) {
+    transition-delay: 0.45s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav a {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: inline-block;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: var(--primary-green);
+}
+
+/* Link Underline Animation */
+.mobile-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-green);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.mobile-nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Primary Button in Menu Special Style */
+.mobile-nav .btn-primary {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 200px;
 }
 
 .no-scroll {
@@ -314,8 +412,6 @@ img {
 
 
 .desktop-nav {
-    /* Flex is not strictly needed on the nav itself if UL is the only child, 
-       but good for safety if we add more later. */
     display: flex;
     align-items: center;
 }
