@@ -312,41 +312,43 @@ img {
 
 .mobile-nav li {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-50px);
+    /* Start from TOP */
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Staggered Animation Delay for Items */
+/* Increased delays for clearer 'one by one' feel */
 .mobile-nav-overlay.active .mobile-nav li:nth-child(1) {
     transition-delay: 0.1s;
 }
 
 .mobile-nav-overlay.active .mobile-nav li:nth-child(2) {
-    transition-delay: 0.15s;
-}
-
-.mobile-nav-overlay.active .mobile-nav li:nth-child(3) {
     transition-delay: 0.2s;
 }
 
-.mobile-nav-overlay.active .mobile-nav li:nth-child(4) {
-    transition-delay: 0.25s;
-}
-
-.mobile-nav-overlay.active .mobile-nav li:nth-child(5) {
+.mobile-nav-overlay.active .mobile-nav li:nth-child(3) {
     transition-delay: 0.3s;
 }
 
-.mobile-nav-overlay.active .mobile-nav li:nth-child(6) {
-    transition-delay: 0.35s;
-}
-
-.mobile-nav-overlay.active .mobile-nav li:nth-child(7) {
+.mobile-nav-overlay.active .mobile-nav li:nth-child(4) {
     transition-delay: 0.4s;
 }
 
+.mobile-nav-overlay.active .mobile-nav li:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(6) {
+    transition-delay: 0.6s;
+}
+
+.mobile-nav-overlay.active .mobile-nav li:nth-child(7) {
+    transition-delay: 0.7s;
+}
+
 .mobile-nav-overlay.active .mobile-nav li:nth-child(8) {
-    transition-delay: 0.45s;
+    transition-delay: 0.8s;
 }
 
 .mobile-nav-overlay.active .mobile-nav li {
